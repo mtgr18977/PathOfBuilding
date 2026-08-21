@@ -1,3 +1,15 @@
+VERSION[beta][2026/08/21]
+
+--- New to Path of Building ---
+* Add support for Chain Hook of Angling (LocalIdentity)
+
+--- Fixed Crashes ---
+* Fix Crash when hovering over the PvP toggle while having Shaper Beam (LocalIdentity)
+
+--- Fixed Calculations ---
+* Fix Sirus Meteor not dealing Chaos Damage (LocalIdentity)
+
+
 VERSION[2.67.2][2026/08/07]
 
 --- Fixed Calculations ---

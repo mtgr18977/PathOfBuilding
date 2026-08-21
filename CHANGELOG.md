@@ -1,5 +1,20 @@
 # Changelog
 
+## [beta](https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/tree/beta) (2026/08/21)
+
+[Full Changelog](https://github.com/PathOfBuildingCommunity/PathOfBuilding/compare/v2.67.2...beta)
+
+
+## What's Changed
+### New to Path of Building
+- Add support for Chain Hook of Angling [\#10245](https://github.com/PathOfBuildingCommunity/PathOfBuilding/pull/10245) ([LocalIdentity](https://github.com/LocalIdentity))
+### Fixed Crashes
+- Fix Crash when hovering over the PvP toggle while having Shaper Beam [\#10244](https://github.com/PathOfBuildingCommunity/PathOfBuilding/pull/10244) ([LocalIdentity](https://github.com/LocalIdentity))
+### Fixed Calculations
+- Fix Sirus Meteor not dealing Chaos Damage [\#10243](https://github.com/PathOfBuildingCommunity/PathOfBuilding/pull/10243) ([LocalIdentity](https://github.com/LocalIdentity))
+
+
+
 ## [v2.67.2](https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/tree/v2.67.2) (2026/08/07)
 
 [Full Changelog](https://github.com/PathOfBuildingCommunity/PathOfBuilding/compare/v2.67.1...v2.67.2)
