@@ -45,3 +45,6 @@ runtime/SimpleGraphic/Screenshots
 
 .emmyrc.json
 .luarc.json
+
+# AI assistant runtime scratch (persona, MCP config, request spool)
+src/AI/

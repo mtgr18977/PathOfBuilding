@@ -81,6 +81,15 @@ function launch:OnInit()
 		end
 	end
 
+	-- TEMPORARY (Phase 0 spike, remove before merge): opt-in runtime probe
+	if os.getenv("POB_AI_SPIKE") then
+		local spikeErr = PCall(LoadModule, "AISpike")
+		if spikeErr then
+			local f = io.open(os.getenv("POB_AI_SPIKE_OUT") or "ai-spike-result.txt", "w")
+			if f then f:write("SPIKE MODULE ERROR: " .. tostring(spikeErr)) f:close() end
+		end
+	end
+
 	if not self.devMode and not firstRunFile then
 		-- Run a background update check if developer mode is off
 		self:CheckForUpdate(true)

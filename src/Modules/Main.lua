@@ -27,6 +27,10 @@ LoadModule("Modules/BuildSiteTools")
 -- Load as global so other modules can access the same instance
 ToastNotification = LoadModule("Modules/ToastNotification")
 
+-- AI assistant. AITools is loaded first: AIBridge reads its schemas at start-up.
+AITools = LoadModule("Modules/AITools")
+AIBridge = LoadModule("Modules/AIBridge")
+
 --[[if launch.devMode then
 	for skillName, skill in pairs(data.enchantments.Helmet) do
 		for _, mod in ipairs(skill.ENDGAME) do
@@ -286,6 +290,9 @@ the "Releases" section of the GitHub page.]])
 			end
 		end
 	end
+
+	-- Must come after self.onFrameFuncs exists: AIBridge registers a per-frame worker there.
+	AIBridge:Init()
 end
 
 function main:DetectUnicodeSupport()
