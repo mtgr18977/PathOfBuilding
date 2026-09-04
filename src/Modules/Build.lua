@@ -476,6 +476,12 @@ function buildMode:Init(dbFileName, buildName, buildXML, convertBuild, importLin
 		self.viewMode = "COMPARE"
 	end)
 	self.controls.modeCompare.locked = function() return self.viewMode == "COMPARE" end
+	-- Shares the Party/Compare row: it has 148px spare before the 300px sidebar edge, and the
+	-- next row down is already claimed by the Main Skill label.
+	self.controls.modeAssistant = new("ButtonControl"):ButtonControl({"LEFT",self.controls.modeCompare,"RIGHT"}, {4, 0, 148, 20}, "AI Assistant", function()
+		self.viewMode = "ASSISTANT"
+	end)
+	self.controls.modeAssistant.locked = function() return self.viewMode == "ASSISTANT" end
 	-- Skills
 	self.controls.mainSkillLabel = new("LabelControl"):LabelControl({"TOPLEFT",self.anchorSideBar,"TOPLEFT"}, {0, 80, 300, 16}, "^7Main Skill:")
 	self.controls.mainSocketGroup = new("DropDownControl"):DropDownControl({"TOPLEFT",self.controls.mainSkillLabel,"BOTTOMLEFT"}, {0, 2, 300, 18}, nil, function(index, value)
@@ -622,6 +628,7 @@ function buildMode:Init(dbFileName, buildName, buildXML, convertBuild, importLin
 	-- ensure that we don't refer to outdated calc tab sections
 	self.breakdownIndex = nil
 	self.compareTab = new("CompareTab"):CompareTab(self)
+	self.assistantTab = new("AssistantTab"):AssistantTab(self)
 	-- Used for pined calcs panes
 	self.overlayPanes = { }
 
@@ -636,6 +643,7 @@ function buildMode:Init(dbFileName, buildName, buildXML, convertBuild, importLin
 		["Skills"] = self.skillsTab,
 		["Calcs"] = self.calcsTab,
 		["Import"] = self.importTab,
+		["Assistant"] = self.assistantTab,
 	}
 	self.legacyLoaders = { -- Special loaders for legacy sections
 		["Spec"] = self.treeTab,
@@ -1315,6 +1323,8 @@ function buildMode:OnFrame(inputEvents)
 		self.calcsTab:Draw(tabViewPort, inputEvents)
 	elseif self.viewMode == "COMPARE" then
 		self.compareTab:Draw(tabViewPort, inputEvents)
+	elseif self.viewMode == "ASSISTANT" then
+		self.assistantTab:Draw(tabViewPort, inputEvents)
 	end
 
 	-- Draw overlay panes on top of all tab content (last = topmost)
@@ -1324,7 +1334,7 @@ function buildMode:OnFrame(inputEvents)
 		end
 	end
 
-	self.unsaved = self.modFlag or self.notesTab.modFlag or self.partyTab.modFlag or self.configTab.modFlag or self.treeTab.modFlag or self.treeTab.searchFlag or self.spec.modFlag or self.skillsTab.modFlag or self.itemsTab.modFlag or self.calcsTab.modFlag
+	self.unsaved = self.modFlag or self.assistantTab.modFlag or self.notesTab.modFlag or self.partyTab.modFlag or self.configTab.modFlag or self.treeTab.modFlag or self.treeTab.searchFlag or self.spec.modFlag or self.skillsTab.modFlag or self.itemsTab.modFlag or self.calcsTab.modFlag
 
 	SetDrawLayer(5)
 
